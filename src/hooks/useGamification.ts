@@ -306,6 +306,10 @@ export function useGamification() {
 
     // Check Album Progress
     const totalUnlocked = unlockedIds.length;
+    // Primera figurita: se desbloquea apenas el alumno consigue al menos una figurita única.
+    if (totalUnlocked >= 1 && !unlockedAchievements.includes('ach-first-sticker')) {
+      newUnlocked.push('ach-first-sticker');
+    }
     if (totalUnlocked >= 10 && !unlockedAchievements.includes('ach-first-10')) {
       newUnlocked.push('ach-first-10');
     }
