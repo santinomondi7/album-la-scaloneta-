@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { PlayerGuessItem } from '../../types';
 import { PLAYER_GUESS_POOL } from '../../data/playerGuessData';
 import { soundManager } from '../../utils/audio';
@@ -27,6 +27,7 @@ export const AdivinaJugadorGame: React.FC<AdivinaJugadorGameProps> = ({
   const [isAnswered, setIsAnswered] = useState(false);
   const [totalPoints, setTotalPoints] = useState(0);
   const [perfectClue1Found, setPerfectClue1Found] = useState(false);
+  const perfectClue1Ref = useRef(false);
   const [isFinished, setIsFinished] = useState(false);
 
   const currentItem = deck[currentRound];
@@ -52,6 +53,7 @@ export const AdivinaJugadorGame: React.FC<AdivinaJugadorGameProps> = ({
       soundManager.playSuccess();
       setTotalPoints(p => p + pointsForCurrentLevel);
       if (clueLevel === 1) {
+        perfectClue1Ref.current = true;
         setPerfectClue1Found(true);
       }
     } else {
@@ -69,7 +71,7 @@ export const AdivinaJugadorGame: React.FC<AdivinaJugadorGameProps> = ({
     } else {
       setIsFinished(true);
       const finalPoints = isRewarded ? totalPoints : 0;
-      onGameComplete(finalPoints, perfectClue1Found);
+      onGameComplete(finalPoints, perfectClue1Ref.current);
     }
   };
 
@@ -82,6 +84,7 @@ export const AdivinaJugadorGame: React.FC<AdivinaJugadorGameProps> = ({
     setIsAnswered(false);
     setTotalPoints(0);
     setPerfectClue1Found(false);
+    perfectClue1Ref.current = false;
     setIsFinished(false);
   };
 

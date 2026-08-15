@@ -13,7 +13,7 @@ interface JuegosViewProps {
   recordGameResult: (
     gameType: 'quiz' | 'penalty' | 'adivina' | 'memoria' | 'rapido',
     pointsEarned: number,
-    extraData?: { isPenaltyGoal?: number; quizScore?: number; perfectClue1?: boolean }
+    extraData?: { isPenaltyGoal?: number; quizScore?: number; perfectClue1?: boolean; rapidScore?: number }
   ) => void;
   getPlaysToday: (gameType: string) => number;
   points: number;
@@ -138,7 +138,7 @@ export const JuegosView: React.FC<JuegosViewProps> = ({
     return (
       <DesafioRapidoGame
         onGameComplete={(pts, score) => {
-          recordGameResult('rapido', pts);
+          recordGameResult('rapido', pts, { rapidScore: score });
         }}
         onExit={() => setActiveGame(null)}
         playsToday={getPlaysToday('rapido')}

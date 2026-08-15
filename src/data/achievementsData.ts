@@ -103,11 +103,11 @@ export const ACHIEVEMENTS_LIST: Achievement[] = [
   {
     id: 'ach-album-complete',
     title: 'Álbum Completo',
-    description: '¡Conseguiste las 44 figuritas de La Scaloneta! Leyenda escolar.',
+    description: '¡Conseguiste las 45 figuritas de La Scaloneta! Leyenda escolar.',
     icon: 'Trophy',
     category: 'coleccion',
     pointsReward: 150,
-    requiredCount: 44
+    requiredCount: 45
   },
   {
     id: 'ach-legendary-pull',

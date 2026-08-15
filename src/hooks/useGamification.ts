@@ -304,61 +304,55 @@ export function useGamification() {
   useEffect(() => {
     const newUnlocked: string[] = [];
 
-    // Check Album Progress
+    // Check every achievement that actually exists in ACHIEVEMENTS_LIST.
+    // IMPORTANT: never enqueue an ID that is not present in achievementsData.ts.
     const totalUnlocked = unlockedIds.length;
-    // Primera figurita: se desbloquea apenas el alumno consigue al menos una figurita única.
+
+    // Album / collection
     if (totalUnlocked >= 1 && !unlockedAchievements.includes('ach-first-sticker')) {
       newUnlocked.push('ach-first-sticker');
     }
-    if (totalUnlocked >= 10 && !unlockedAchievements.includes('ach-first-10')) {
-      newUnlocked.push('ach-first-10');
+    if (totalUnlocked >= 10 && !unlockedAchievements.includes('ach-collector-10')) {
+      newUnlocked.push('ach-collector-10');
     }
-    if (totalUnlocked >= 22 && !unlockedAchievements.includes('ach-half-album')) {
-      newUnlocked.push('ach-half-album');
+    if (totalUnlocked >= 25 && !unlockedAchievements.includes('ach-collector-25')) {
+      newUnlocked.push('ach-collector-25');
     }
-    if (totalUnlocked >= TOTAL_STICKERS_COUNT && !unlockedAchievements.includes('ach-full-album')) {
-      newUnlocked.push('ach-full-album');
+    if (totalUnlocked >= TOTAL_STICKERS_COUNT && !unlockedAchievements.includes('ach-album-complete')) {
+      newUnlocked.push('ach-album-complete');
     }
 
-    // Check Packs Opened
+    // Packs
     if (packsOpenedCount >= 1 && !unlockedAchievements.includes('ach-first-pack')) {
       newUnlocked.push('ach-first-pack');
     }
-    if (packsOpenedCount >= 10 && !unlockedAchievements.includes('ach-pack-collector')) {
-      newUnlocked.push('ach-pack-collector');
+    if (packsOpenedCount >= 5 && !unlockedAchievements.includes('ach-five-packs')) {
+      newUnlocked.push('ach-five-packs');
     }
 
-    // Check Games Played
-    if (gamesPlayedCount >= 1 && !unlockedAchievements.includes('ach-first-game')) {
-      newUnlocked.push('ach-first-game');
-    }
-    if (gamesPlayedCount >= 15 && !unlockedAchievements.includes('ach-games-enthusiast')) {
-      newUnlocked.push('ach-games-enthusiast');
-    }
+    // General game participation is represented by the existing first-quiz achievement,
+    // so do not invent IDs such as ach-first-game or ach-games-enthusiast.
 
-    // Check Penalty Goals
+    // Penalties
     if (penaltyGoalsCount >= 10 && !unlockedAchievements.includes('ach-penalty-scorer')) {
       newUnlocked.push('ach-penalty-scorer');
     }
 
-    // Check Streak
+    // Streak
     if (streakDays >= 3 && !unlockedAchievements.includes('ach-streak-3')) {
       newUnlocked.push('ach-streak-3');
     }
-    if (streakDays >= 7 && !unlockedAchievements.includes('ach-streak-7')) {
-      newUnlocked.push('ach-streak-7');
-    }
 
-    // Check Points Milestones
+    // Points
     if (points >= 500 && !unlockedAchievements.includes('ach-points-500')) {
       newUnlocked.push('ach-points-500');
     }
-    if (points >= 1000 && !unlockedAchievements.includes('ach-points-1000')) {
-      newUnlocked.push('ach-points-1000');
-    }
 
     if (newUnlocked.length > 0) {
-      setUnlockedAchievements(prev => [...prev, ...newUnlocked]);
+      setUnlockedAchievements(prev => {
+        const additions = newUnlocked.filter(id => !prev.includes(id));
+        return additions.length ? [...prev, ...additions] : prev;
+      });
       newUnlocked.forEach(achId => {
         const ach = ACHIEVEMENTS_LIST.find(a => a.id === achId);
         if (ach) {
@@ -584,7 +578,7 @@ export function useGamification() {
   }, [unlockedIds, duplicateCounts, pickRandomSticker, addToast, unlockedAchievements, packsOpenedCount]);
 
   // Record Mini-game play
-  const recordGameResult = useCallback((gameType: 'quiz' | 'penalty' | 'adivina' | 'memoria' | 'rapido', pointsEarned: number, extraData?: { isPenaltyGoal?: number; quizScore?: number; perfectClue1?: boolean }) => {
+  const recordGameResult = useCallback((gameType: 'quiz' | 'penalty' | 'adivina' | 'memoria' | 'rapido', pointsEarned: number, extraData?: { isPenaltyGoal?: number; quizScore?: number; perfectClue1?: boolean; rapidScore?: number }) => {
     const today = new Date().toISOString().split('T')[0];
     const todayRecord = dailyGamesRecord[today] || {};
     const playsToday = todayRecord[gameType] || 0;
@@ -624,10 +618,29 @@ export function useGamification() {
       setUnlockedAchievements(prev => [...prev, 'ach-sharp-eye']);
       setPoints(p => p + 35);
       addToast({ type: 'achievement', title: '¡LOGRO: Ojo de Lince!', subtitle: '+35 pts' });
-    } else if (gameType === 'memoria' && !unlockedAchievements.includes('ach-memory-master')) {
-      setUnlockedAchievements(prev => [...prev, 'ach-memory-master']);
-      setPoints(p => p + 30);
-      addToast({ type: 'achievement', title: '¡LOGRO: Mente Futbolera!', subtitle: '+30 pts' });
+    } else if (gameType === 'memoria') {
+      // Este callback solo se dispara cuando Memoria termina todas las parejas.
+      setUnlockedAchievements(prev => {
+        if (prev.includes('ach-memory-master')) return prev;
+        setPoints(p => p + 30);
+        addToast({
+          type: 'achievement',
+          title: '¡LOGRO: Mente Futbolera!',
+          subtitle: '+30 pts • Completaste Memoria Futbolera'
+        });
+        return [...prev, 'ach-memory-master'];
+      });
+    } else if (gameType === 'rapido' && (extraData?.rapidScore ?? 0) > 6 && !unlockedAchievements.includes('ach-speed-runner')) {
+      setUnlockedAchievements(prev => {
+        if (prev.includes('ach-speed-runner')) return prev;
+        setPoints(p => p + 40);
+        addToast({
+          type: 'achievement',
+          title: '¡LOGRO: Reflejos Rápidos!',
+          subtitle: '+40 pts • Más de 6 aciertos en 30 segundos'
+        });
+        return [...prev, 'ach-speed-runner'];
+      });
     }
 
     return {

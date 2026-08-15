@@ -1,0 +1,177 @@
+/mnt/data/audit/src/hooks/useAlbumProgress.ts:11:      const saved = localStorage.getItem(STORAGE_KEY);
+/mnt/data/audit/src/hooks/useAlbumProgress.ts:24:      const saved = localStorage.getItem(CUSTOM_DATA_KEY);
+/mnt/data/audit/src/hooks/useAlbumProgress.ts:30:  // Save to localStorage
+/mnt/data/audit/src/hooks/useAlbumProgress.ts:33:      localStorage.setItem(STORAGE_KEY, JSON.stringify(unlockedIds));
+/mnt/data/audit/src/hooks/useAlbumProgress.ts:47:    return unlockedIds.includes(id);
+/mnt/data/audit/src/hooks/useAlbumProgress.ts:51:    if (!unlockedIds.includes(id)) {
+/mnt/data/audit/src/hooks/useAlbumProgress.ts:60:    if (unlockedIds.includes(id)) {
+/mnt/data/audit/src/hooks/useAlbumProgress.ts:61:      setUnlockedIds(prev => prev.filter(x => x !== id));
+/mnt/data/audit/src/hooks/useAlbumProgress.ts:69:    const allIds = ALL_STICKERS.map(s => s.id);
+/mnt/data/audit/src/hooks/useAlbumProgress.ts:79:      localStorage.removeItem(STORAGE_KEY);
+/mnt/data/audit/src/hooks/useAlbumProgress.ts:86:    const lockedStickers = ALL_STICKERS.filter(s => !unlockedIds.includes(s.id));
+/mnt/data/audit/src/hooks/useAlbumProgress.ts:92:    const selectedIds = selected.map(s => s.id);
+/mnt/data/audit/src/hooks/useAlbumProgress.ts:103:      localStorage.setItem(CUSTOM_DATA_KEY, JSON.stringify(next));
+/mnt/data/audit/src/hooks/useGamification.ts:5:import { ACHIEVEMENTS_LIST } from '../data/achievementsData';
+/mnt/data/audit/src/hooks/useGamification.ts:21:  ACHIEVEMENTS: 'scaloneta_unlocked_achievements_v4',
+/mnt/data/audit/src/hooks/useGamification.ts:45:      const saved = localStorage.getItem(STORAGE_KEYS.UNLOCKED_IDS);
+/mnt/data/audit/src/hooks/useGamification.ts:56:      const saved = localStorage.getItem(STORAGE_KEYS.DUPLICATE_COUNTS);
+/mnt/data/audit/src/hooks/useGamification.ts:67:      const saved = localStorage.getItem(STORAGE_KEYS.POINTS);
+/mnt/data/audit/src/hooks/useGamification.ts:77:      const saved = localStorage.getItem(STORAGE_KEYS.LAST_PACK_TIME);
+/mnt/data/audit/src/hooks/useGamification.ts:87:      const saved = localStorage.getItem(STORAGE_KEYS.LAST_DAILY_BONUS_TIME);
+/mnt/data/audit/src/hooks/useGamification.ts:96:      const saved = localStorage.getItem(STORAGE_KEYS.STREAK_DAYS);
+/mnt/data/audit/src/hooks/useGamification.ts:106:      const saved = localStorage.getItem(STORAGE_KEYS.PACKS_OPENED);
+/mnt/data/audit/src/hooks/useGamification.ts:115:      const saved = localStorage.getItem(STORAGE_KEYS.GAMES_PLAYED);
+/mnt/data/audit/src/hooks/useGamification.ts:124:      const saved = localStorage.getItem(STORAGE_KEYS.PENALTY_GOALS);
+/mnt/data/audit/src/hooks/useGamification.ts:134:      const saved = localStorage.getItem(STORAGE_KEYS.DAILY_GAMES);
+/mnt/data/audit/src/hooks/useGamification.ts:144:      const saved = localStorage.getItem(STORAGE_KEYS.ACHIEVEMENTS);
+/mnt/data/audit/src/hooks/useGamification.ts:154:      const saved = localStorage.getItem(STORAGE_KEYS.PACK_HISTORY);
+/mnt/data/audit/src/hooks/useGamification.ts:164:      const saved = localStorage.getItem(STORAGE_KEYS.CUSTOM_DESCRIPTIONS);
+/mnt/data/audit/src/hooks/useGamification.ts:174:      return localStorage.getItem(STORAGE_KEYS.HAS_CELEBRATED) === 'true';
+/mnt/data/audit/src/hooks/useGamification.ts:190:    const timer = setInterval(() => {
+/mnt/data/audit/src/hooks/useGamification.ts:222:    saveTimeoutRef.current = setTimeout(async () => {
+/mnt/data/audit/src/hooks/useGamification.ts:234:      localStorage.setItem(STORAGE_KEYS.UNLOCKED_IDS, JSON.stringify(unlockedIds));
+/mnt/data/audit/src/hooks/useGamification.ts:235:      localStorage.setItem(STORAGE_KEYS.DUPLICATE_COUNTS, JSON.stringify(duplicateCounts));
+/mnt/data/audit/src/hooks/useGamification.ts:236:      localStorage.setItem(STORAGE_KEYS.POINTS, points.toString());
+/mnt/data/audit/src/hooks/useGamification.ts:237:      localStorage.setItem(STORAGE_KEYS.LAST_PACK_TIME, lastPackTime.toString());
+/mnt/data/audit/src/hooks/useGamification.ts:238:      localStorage.setItem(STORAGE_KEYS.LAST_DAILY_BONUS_TIME, lastDailyBonusTime.toString());
+/mnt/data/audit/src/hooks/useGamification.ts:239:      localStorage.setItem(STORAGE_KEYS.STREAK_DAYS, streakDays.toString());
+/mnt/data/audit/src/hooks/useGamification.ts:240:      localStorage.setItem(STORAGE_KEYS.PACKS_OPENED, packsOpenedCount.toString());
+/mnt/data/audit/src/hooks/useGamification.ts:241:      localStorage.setItem(STORAGE_KEYS.GAMES_PLAYED, gamesPlayedCount.toString());
+/mnt/data/audit/src/hooks/useGamification.ts:242:      localStorage.setItem(STORAGE_KEYS.PENALTY_GOALS, penaltyGoalsCount.toString());
+/mnt/data/audit/src/hooks/useGamification.ts:243:      localStorage.setItem(STORAGE_KEYS.DAILY_GAMES, JSON.stringify(dailyGamesRecord));
+/mnt/data/audit/src/hooks/useGamification.ts:244:      localStorage.setItem(STORAGE_KEYS.ACHIEVEMENTS, JSON.stringify(unlockedAchievements));
+/mnt/data/audit/src/hooks/useGamification.ts:245:      localStorage.setItem(STORAGE_KEYS.PACK_HISTORY, JSON.stringify(packHistory));
+/mnt/data/audit/src/hooks/useGamification.ts:246:      localStorage.setItem(STORAGE_KEYS.CUSTOM_DESCRIPTIONS, JSON.stringify(customDescriptions));
+/mnt/data/audit/src/hooks/useGamification.ts:287:    setTimeout(() => {
+/mnt/data/audit/src/hooks/useGamification.ts:288:      setToasts(prev => prev.filter(t => t.id !== id));
+/mnt/data/audit/src/hooks/useGamification.ts:303:  // Check achievements automatically based on stats
+/mnt/data/audit/src/hooks/useGamification.ts:307:    // Check every achievement that actually exists in ACHIEVEMENTS_LIST.
+/mnt/data/audit/src/hooks/useGamification.ts:308:    // IMPORTANT: never enqueue an ID that is not present in achievementsData.ts.
+/mnt/data/audit/src/hooks/useGamification.ts:312:    if (totalUnlocked >= 1 && !unlockedAchievements.includes('ach-first-sticker')) {
+/mnt/data/audit/src/hooks/useGamification.ts:315:    if (totalUnlocked >= 10 && !unlockedAchievements.includes('ach-collector-10')) {
+/mnt/data/audit/src/hooks/useGamification.ts:318:    if (totalUnlocked >= 25 && !unlockedAchievements.includes('ach-collector-25')) {
+/mnt/data/audit/src/hooks/useGamification.ts:321:    if (totalUnlocked >= TOTAL_STICKERS_COUNT && !unlockedAchievements.includes('ach-album-complete')) {
+/mnt/data/audit/src/hooks/useGamification.ts:326:    if (packsOpenedCount >= 1 && !unlockedAchievements.includes('ach-first-pack')) {
+/mnt/data/audit/src/hooks/useGamification.ts:329:    if (packsOpenedCount >= 5 && !unlockedAchievements.includes('ach-five-packs')) {
+/mnt/data/audit/src/hooks/useGamification.ts:333:    // General game participation is represented by the existing first-quiz achievement,
+/mnt/data/audit/src/hooks/useGamification.ts:337:    if (penaltyGoalsCount >= 10 && !unlockedAchievements.includes('ach-penalty-scorer')) {
+/mnt/data/audit/src/hooks/useGamification.ts:342:    if (streakDays >= 3 && !unlockedAchievements.includes('ach-streak-3')) {
+/mnt/data/audit/src/hooks/useGamification.ts:347:    if (points >= 500 && !unlockedAchievements.includes('ach-points-500')) {
+/mnt/data/audit/src/hooks/useGamification.ts:359:            type: 'achievement',
+/mnt/data/audit/src/hooks/useGamification.ts:373:      localStorage.setItem(STORAGE_KEYS.HAS_CELEBRATED, 'true');
+/mnt/data/audit/src/hooks/useGamification.ts:437:      ? ALL_STICKERS.filter(s => availableIds.has(s.id))
+/mnt/data/audit/src/hooks/useGamification.ts:455:    const matchingPool = available.filter(s => s.rarity === targetRarity);
+/mnt/data/audit/src/hooks/useGamification.ts:464:      ALL_STICKERS.filter(sticker => !unlockedIds.includes(sticker.id)).map(sticker => sticker.id)
+/mnt/data/audit/src/hooks/useGamification.ts:469:        type: 'achievement',
+/mnt/data/audit/src/hooks/useGamification.ts:560:      if (!unlockedAchievements.includes('ach-legendary-pull')) {
+/mnt/data/audit/src/hooks/useGamification.ts:568:        type: 'achievement',
+/mnt/data/audit/src/hooks/useGamification.ts:579:    const today = new Date().toISOString().split('T')[0];
+/mnt/data/audit/src/hooks/useGamification.ts:604:      if (!unlockedAchievements.includes('ach-first-quiz')) {
+/mnt/data/audit/src/hooks/useGamification.ts:607:        addToast({ type: 'achievement', title: '¡LOGRO: Primer Quiz!', subtitle: '+20 pts' });
+/mnt/data/audit/src/hooks/useGamification.ts:609:      if (extraData?.quizScore && extraData.quizScore >= 8 && !unlockedAchievements.includes('ach-quiz-master')) {
+/mnt/data/audit/src/hooks/useGamification.ts:612:        addToast({ type: 'achievement', title: '¡LOGRO: Sabio Albiceleste!', subtitle: '+50 pts' });
+/mnt/data/audit/src/hooks/useGamification.ts:614:    } else if (gameType === 'adivina' && extraData?.perfectClue1 && !unlockedAchievements.includes('ach-sharp-eye')) {
+/mnt/data/audit/src/hooks/useGamification.ts:617:      addToast({ type: 'achievement', title: '¡LOGRO: Ojo de Lince!', subtitle: '+35 pts' });
+/mnt/data/audit/src/hooks/useGamification.ts:621:        if (prev.includes('ach-memory-master')) return prev;
+/mnt/data/audit/src/hooks/useGamification.ts:624:          type: 'achievement',
+/mnt/data/audit/src/hooks/useGamification.ts:630:    } else if (gameType === 'rapido' && (extraData?.rapidScore ?? 0) > 6 && !unlockedAchievements.includes('ach-speed-runner')) {
+/mnt/data/audit/src/hooks/useGamification.ts:632:        if (prev.includes('ach-speed-runner')) return prev;
+/mnt/data/audit/src/hooks/useGamification.ts:635:          type: 'achievement',
+/mnt/data/audit/src/hooks/useGamification.ts:651:    const today = new Date().toISOString().split('T')[0];
+/mnt/data/audit/src/hooks/useGamification.ts:657:  const isUnlocked = useCallback((id: string) => unlockedIds.includes(id), [unlockedIds]);
+/mnt/data/audit/src/hooks/useGamification.ts:676:      Object.values(STORAGE_KEYS).forEach(k => localStorage.removeItem(k));
+/mnt/data/audit/src/types/index.ts:123:  type: 'points' | 'achievement' | 'legendary' | 'bonus';
+/mnt/data/audit/src/views/EquipoView.tsx:28:  const teamMembers = ALL_STICKERS.filter(
+/mnt/data/audit/src/views/EquipoView.tsx:148:          {teamMembers.map(sticker => (
+/mnt/data/audit/src/views/PropuestasView.tsx:25:    return ALL_STICKERS.filter(s => s.type === 'propuesta');
+/mnt/data/audit/src/views/PropuestasView.tsx:43:    return allProposals.filter(p => {
+/mnt/data/audit/src/views/PropuestasView.tsx:47:        p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+/mnt/data/audit/src/views/PropuestasView.tsx:48:        p.category?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+/mnt/data/audit/src/views/PropuestasView.tsx:49:        p.position?.toLowerCase().includes(searchQuery.toLowerCase());
+/mnt/data/audit/src/views/PropuestasView.tsx:120:          {CATEGORIES_LIST.map(cat => {
+/mnt/data/audit/src/views/PropuestasView.tsx:122:            const count = allProposals.filter(p => p.category === cat).length;
+/mnt/data/audit/src/views/PropuestasView.tsx:160:          {filteredProposals.map(sticker => (
+/mnt/data/audit/src/views/EspecialesView.tsx:21:  const collectedCount = SPECIAL_STICKERS.filter(s => isUnlocked(s.id)).length;
+/mnt/data/audit/src/views/EspecialesView.tsx:65:          {SPECIAL_STICKERS.map(sticker => (
+/mnt/data/audit/src/views/LogrosView.tsx:2:import { ACHIEVEMENTS_LIST } from '../data/achievementsData';
+/mnt/data/audit/src/views/LogrosView.tsx:29:  const filteredList = ACHIEVEMENTS_LIST.filter(ach => {
+/mnt/data/audit/src/views/LogrosView.tsx:73:        {categories.map(cat => (
+/mnt/data/audit/src/views/LogrosView.tsx:93:        {filteredList.map(ach => {
+/mnt/data/audit/src/views/LogrosView.tsx:94:          const isUnlocked = unlockedAchievements.includes(ach.id);
+/mnt/data/audit/src/views/MiAlbumView.tsx:38:  const filteredStickers = ALL_STICKERS.filter(s => {
+/mnt/data/audit/src/views/MiAlbumView.tsx:273:          {filteredStickers.map(sticker => {
+/mnt/data/audit/src/views/SobresView.tsx:46:    setTimeout(() => {
+/mnt/data/audit/src/views/SobresView.tsx:51:      setTimeout(() => setRevealedIndices(results.length >= 1 ? [0] : []), 400);
+/mnt/data/audit/src/views/SobresView.tsx:52:      setTimeout(() => setRevealedIndices(results.length >= 2 ? [0, 1] : results.length >= 1 ? [0] : []), 900);
+/mnt/data/audit/src/views/SobresView.tsx:53:      setTimeout(() => {
+/mnt/data/audit/src/views/SobresView.tsx:54:        setRevealedIndices(results.map((_, index) => index));
+/mnt/data/audit/src/views/SobresView.tsx:63:      setRevealedIndices(pulledCards.map((_, index) => index));
+/mnt/data/audit/src/views/SobresView.tsx:270:            {pulledCards.map((pull, idx) => {
+/mnt/data/audit/src/views/SobresView.tsx:272:              const isRevealed = revealedIndices.includes(idx);
+/mnt/data/audit/src/views/SobresView.tsx:449:                packHistory.map(entry => (
+/mnt/data/audit/src/views/SobresView.tsx:468:                      {entry.cards.map((c, i) => (
+/mnt/data/audit/src/views/PerfilView.tsx:3:import { ACHIEVEMENTS_LIST } from '../data/achievementsData';
+/mnt/data/audit/src/views/PerfilView.tsx:80:      setTimeout(() => setCopiedId(false), 2000);
+/mnt/data/audit/src/views/JuegosView.tsx:198:        {gamesList.map(game => {
+/mnt/data/audit/src/views/SecretariasView.tsx:72:        {SECRETARIAS_DATA.map((sec, idx) => {
+/mnt/data/audit/src/views/SecretariasView.tsx:74:          const memberStickers = sec.members.map(m => {
+/mnt/data/audit/src/views/SecretariasView.tsx:106:                {memberStickers.map(sticker => {
+/mnt/data/audit/src/data/albumData.ts:865:export const ALL_STICKERS: Sticker[] = RAW_STICKERS.map(s => {
+/mnt/data/audit/src/data/albumData.ts:890:export const SPECIAL_STICKERS = ALL_STICKERS.filter(s => s.rarity === 'legendary' || s.id === 'st-00');
+/mnt/data/audit/src/data/albumData.ts:891:export const PLAYER_STICKERS = ALL_STICKERS.filter(s => s.type === 'player');
+/mnt/data/audit/src/data/albumData.ts:892:export const PROPOSAL_STICKERS = ALL_STICKERS.filter(s => s.type === 'propuesta');
+/mnt/data/audit/src/data/quizData.ts:283:  const easy = pool.filter(q => q.difficulty === 'facil').sort(() => 0.5 - Math.random()).slice(0, 5);
+/mnt/data/audit/src/data/quizData.ts:284:  const med = pool.filter(q => q.difficulty === 'medio').sort(() => 0.5 - Math.random()).slice(0, 3);
+/mnt/data/audit/src/data/quizData.ts:285:  const hard = pool.filter(q => q.difficulty === 'dificil').sort(() => 0.5 - Math.random()).slice(0, 2);
+/mnt/data/audit/src/context/AuthContext.tsx:25:    let localId = localStorage.getItem(LOCAL_USER_ID_KEY);
+/mnt/data/audit/src/context/AuthContext.tsx:33:      localStorage.setItem(LOCAL_USER_ID_KEY, localId);
+/mnt/data/audit/src/context/AuthContext.tsx:43:    const raw = localStorage.getItem(LOCAL_PROFILE_CACHE_KEY);
+/mnt/data/audit/src/context/AuthContext.tsx:52:      localStorage.setItem(LOCAL_PROFILE_CACHE_KEY, JSON.stringify(profile));
+/mnt/data/audit/src/context/AuthContext.tsx:54:      localStorage.removeItem(LOCAL_PROFILE_CACHE_KEY);
+/mnt/data/audit/src/context/AuthContext.tsx:208:          localStorage.setItem(LOCAL_USER_ID_KEY, found.id);
+/mnt/data/audit/src/context/AuthContext.tsx:264:        localStorage.setItem(LOCAL_USER_ID_KEY, cred.user.uid);
+/mnt/data/audit/src/context/AuthContext.tsx:292:        localStorage.setItem(LOCAL_USER_ID_KEY, cred.user.uid);
+/mnt/data/audit/src/components/ShareModal.tsx:34:    setTimeout(() => setCopied(false), 2000);
+/mnt/data/audit/src/components/BottomNav.tsx:31:      {tabs.map(tab => {
+/mnt/data/audit/src/components/PlayerPhoto.tsx:36:    if (alt.includes('Santino')) num = 1;
+/mnt/data/audit/src/components/PlayerPhoto.tsx:37:    else if (alt.includes('Helena')) num = 2;
+/mnt/data/audit/src/components/PlayerPhoto.tsx:38:    else if (alt.includes('Angelina')) num = 3;
+/mnt/data/audit/src/components/PlayerPhoto.tsx:39:    else if (alt.includes('Amparo')) num = 4;
+/mnt/data/audit/src/components/PlayerPhoto.tsx:40:    else if (alt.includes('Tamara')) num = 5;
+/mnt/data/audit/src/components/PlayerPhoto.tsx:41:    else if (alt.includes('Salvador')) num = 6;
+/mnt/data/audit/src/components/PlayerPhoto.tsx:42:    else if (alt.includes('Lautaro')) num = 7;
+/mnt/data/audit/src/components/PlayerPhoto.tsx:43:    else if (alt.includes('Felipe')) num = 8;
+/mnt/data/audit/src/components/PlayerPhoto.tsx:44:    else if (alt.includes('Dana')) num = 9;
+/mnt/data/audit/src/components/PlayerPhoto.tsx:45:    else if (alt.includes('Luna')) num = 10;
+/mnt/data/audit/src/components/PlayerPhoto.tsx:46:    else if (alt.includes('Lucia') || alt.includes('Lucía')) num = 11;
+/mnt/data/audit/src/components/PlayerPhoto.tsx:47:    else if (alt.includes('Ernestina')) num = 12;
+/mnt/data/audit/src/components/PlayerPhoto.tsx:48:    else if (alt.includes('Camilo')) num = 13;
+/mnt/data/audit/src/components/PlayerPhoto.tsx:49:    else if (alt.includes('Clara')) num = 14;
+/mnt/data/audit/src/components/PackOpenerModal.tsx:41:    setTimeout(() => {
+/mnt/data/audit/src/components/PackOpenerModal.tsx:44:      const uncollected = ALL_STICKERS.filter(s => !unlockedIds.has(s.id));
+/mnt/data/audit/src/components/PackOpenerModal.tsx:55:      onUnlockBatch(selected.map(s => s.id));
+/mnt/data/audit/src/components/PackOpenerModal.tsx:132:                {revealedCards.map(card => (
+/mnt/data/audit/src/components/PointsToast.tsx:14:      {toasts.map(toast => {
+/mnt/data/audit/src/components/PointsToast.tsx:19:        if (toast.type === 'achievement') {
+/mnt/data/audit/src/components/OnboardingProfileModal.tsx:137:                {AVATAR_OPTIONS.map((emoji) => (
+/mnt/data/audit/src/components/Header.tsx:88:            {navItems.slice(0, 7).map(item => {
+/mnt/data/audit/src/components/Header.tsx:151:                  {(userProfile.displayName || 'Coleccionista').split(' ')[0]}
+/mnt/data/audit/src/components/StickerModal.tsx:322:                      {sticker.tags.map((t, i) => (
+/mnt/data/audit/src/components/QRCodeModal.tsx:25:    setTimeout(() => setCopied(false), 2000);
+/mnt/data/audit/src/components/games/QuizGame.tsx:139:            {currentQ.options.map((option, idx) => {
+/mnt/data/audit/src/components/games/AdivinaJugadorGame.tsx:202:            {currentItem.options.map((playerOption, idx) => {
+/mnt/data/audit/src/components/games/PenaltyGame.tsx:39:  const goalsCount = kicksHistory.filter(k => k === 'goal').length;
+/mnt/data/audit/src/components/games/PenaltyGame.tsx:55:    setTimeout(() => {
+/mnt/data/audit/src/components/games/PenaltyGame.tsx:67:      setTimeout(() => {
+/mnt/data/audit/src/components/games/PenaltyGame.tsx:76:          const finalGoals = nextHistory.filter(k => k === 'goal').length;
+/mnt/data/audit/src/components/games/PenaltyGame.tsx:136:              {Array.from({ length: TOTAL_KICKS }).map((_, i) => {
+/mnt/data/audit/src/components/games/PenaltyGame.tsx:172:              {ZONES.map(z => {
+/mnt/data/audit/src/components/games/MemoriaGame.tsx:69:    setCards(prev => prev.map(c => (c.id === id ? { ...c, isFlipped: true } : c)));
+/mnt/data/audit/src/components/games/MemoriaGame.tsx:81:        setTimeout(() => {
+/mnt/data/audit/src/components/games/MemoriaGame.tsx:84:            prev.map(c => (c.id === firstId || c.id === secondId ? { ...c, isMatched: true } : c))
+/mnt/data/audit/src/components/games/MemoriaGame.tsx:100:        setTimeout(() => {
+/mnt/data/audit/src/components/games/MemoriaGame.tsx:102:            prev.map(c => (c.id === firstId || c.id === secondId ? { ...c, isFlipped: false } : c))
+/mnt/data/audit/src/components/games/MemoriaGame.tsx:159:            {cards.map(card => {
+/mnt/data/audit/src/components/games/DesafioRapidoGame.tsx:66:    const interval = window.setInterval(updateTimer, 1000);
+/mnt/data/audit/src/components/games/DesafioRapidoGame.tsx:178:            {currentQ.options.map((option, idx) => (
+/mnt/data/audit/src/components/EditProfileModal.tsx:74:              {AVATAR_OPTIONS.map((emoji) => (

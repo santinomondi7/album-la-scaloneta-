@@ -33,8 +33,9 @@ export const QuizGame: React.FC<QuizGameProps> = ({
     setIsAnswered(true);
 
     const isCorrect = index === currentQ.correctIndex;
+    const nextScore = score + (isCorrect ? 1 : 0);
     if (isCorrect) {
-      setScore(s => s + 1);
+      setScore(nextScore);
       soundManager.playSuccess();
     } else {
       soundManager.playMiss();
@@ -49,8 +50,8 @@ export const QuizGame: React.FC<QuizGameProps> = ({
       setIsAnswered(false);
     } else {
       setIsFinished(true);
-      const pointsEarned = isRewarded ? score * 10 : 0;
-      onGameComplete(pointsEarned, score);
+      const pointsEarned = isRewarded ? nextScore * 10 : 0;
+      onGameComplete(pointsEarned, nextScore);
     }
   };
 
