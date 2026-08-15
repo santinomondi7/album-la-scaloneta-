@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { RapidQuestion } from '../../types';
 import { RAPID_TRIVIA_POOL } from '../../data/rapidTriviaData';
 import { soundManager } from '../../utils/audio';
@@ -22,34 +22,55 @@ export const DesafioRapidoGame: React.FC<DesafioRapidoGameProps> = ({
   });
   const [currentIndex, setCurrentIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState(30);
+  const endTimeRef = useRef<number | null>(null);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
 
   const isRewarded = playsToday < maxRewarded;
 
-  // 30-second countdown
+  // Exact 30-second countdown: 30, 29, 28 ... 1, 0.
+  // The interval is intentionally tied only to the start/end of the game,
+  // so answering questions cannot restart or disturb the timer.
+  const correctAnswersRef = useRef(0);
+
+  useEffect(() => {
+    correctAnswersRef.current = correctAnswers;
+  }, [correctAnswers]);
+
   useEffect(() => {
     if (!isPlaying || isFinished) return;
 
-    if (timeLeft <= 0) {
-      setIsFinished(true);
-      setIsPlaying(false);
-      const pointsEarned = isRewarded ? correctAnswers * 10 : 0;
-      onGameComplete(pointsEarned, correctAnswers);
-      soundManager.playGoldFanfare();
-      return;
+    if (endTimeRef.current === null) {
+      endTimeRef.current = Date.now() + 30_000;
     }
 
-    const interval = setInterval(() => {
-      setTimeLeft(t => t - 1);
-    }, 1000);
+    const updateTimer = () => {
+      const remainingMs = Math.max(0, endTimeRef.current! - Date.now());
+      const remainingSeconds = Math.ceil(remainingMs / 1000);
 
-    return () => clearInterval(interval);
-  }, [isPlaying, isFinished, timeLeft, correctAnswers, isRewarded, onGameComplete]);
+      setTimeLeft(remainingSeconds);
+
+      if (remainingSeconds <= 0) {
+        setIsFinished(true);
+        setIsPlaying(false);
+        const finalCorrect = correctAnswersRef.current;
+        const pointsEarned = isRewarded ? finalCorrect * 10 : 0;
+        onGameComplete(pointsEarned, finalCorrect);
+        soundManager.playGoldFanfare();
+      }
+    };
+
+    // Show 30 immediately, then update exactly once each second.
+    updateTimer();
+    const interval = window.setInterval(updateTimer, 1000);
+    return () => window.clearInterval(interval);
+  }, [isPlaying, isFinished, isRewarded, onGameComplete]);
 
   const handleStart = () => {
     soundManager.playClick();
+    endTimeRef.current = Date.now() + 30_000;
+    setTimeLeft(30);
     setIsPlaying(true);
   };
 
@@ -73,6 +94,7 @@ export const DesafioRapidoGame: React.FC<DesafioRapidoGameProps> = ({
     soundManager.playClick();
     setDeck([...RAPID_TRIVIA_POOL].sort(() => 0.5 - Math.random()));
     setCurrentIndex(0);
+    endTimeRef.current = Date.now() + 30_000;
     setTimeLeft(30);
     setCorrectAnswers(0);
     setIsPlaying(true);
