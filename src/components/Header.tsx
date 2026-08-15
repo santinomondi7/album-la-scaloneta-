@@ -144,11 +144,11 @@ export const Header: React.FC<HeaderProps> = ({
                   setActiveSection('perfil');
                 }}
                 className="flex items-center gap-1.5 bg-white/90 hover:bg-white text-[#003870] px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-xl border border-[#003870]/30 shadow-xs transition-transform hover:scale-105 cursor-pointer"
-                title={`Perfil: ${userProfile.displayName} (${userProfile.collectorId})`}
+                title={`Perfil: ${userProfile.displayName || 'Coleccionista'} (${userProfile.collectorId})`}
               >
                 <span className="text-base sm:text-lg leading-none">{userProfile.avatarEmoji || '⚽'}</span>
                 <span className="hidden lg:inline text-xs font-black uppercase tracking-wider text-[#003870] max-w-[80px] truncate">
-                  {userProfile.displayName.split(' ')[0]}
+                  {(userProfile.displayName || 'Coleccionista').split(' ')[0]}
                 </span>
               </button>
             )}
