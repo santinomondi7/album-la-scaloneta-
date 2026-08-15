@@ -1,0 +1,41 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile & Progress",
+      "description": "Stores user collector profile, unlocked stickers, points, pack timer and game stats",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "collectorId": { "type": "string" },
+        "displayName": { "type": "string" },
+        "course": { "type": "string" },
+        "avatar": { "type": "string" },
+        "email": { "type": "string" },
+        "isAnonymous": { "type": "boolean" },
+        "points": { "type": "number" },
+        "unlockedIds": { "type": "array", "items": { "type": "string" } },
+        "duplicateCounts": { "type": "object" },
+        "lastPackTime": { "type": "number" },
+        "lastDailyBonusTime": { "type": "number" },
+        "streakDays": { "type": "number" },
+        "packsOpenedCount": { "type": "number" },
+        "gamesPlayedCount": { "type": "number" },
+        "penaltyGoalsCount": { "type": "number" },
+        "dailyGamesRecord": { "type": "object" },
+        "unlockedAchievements": { "type": "array", "items": { "type": "string" } },
+        "customDescriptions": { "type": "object" },
+        "packHistory": { "type": "array" },
+        "hasCelebrated": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "collectorId", "displayName"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User document containing full album collection and progress data"
+    }
+  }
+}

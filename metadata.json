@@ -1,0 +1,6 @@
+{
+  "name": "La Scaloneta - Álbum Oficial Centro de Estudiantes",
+  "description": "Álbum digital interactivo de figuritas coleccionables de la lista estudiantil La Scaloneta.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
